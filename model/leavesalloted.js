@@ -1,40 +1,65 @@
-const { number } = require('@hapi/joi');
+const { number, object, required } = require('@hapi/joi');
 const mongoose = require('mongoose');
 
 const LeavesSchema = new mongoose.Schema({
-    
+    _id:{
+        type:Object,
+        required:true
+    },
     employeeId:{
         type:String,
         required:true,
         min:5,
         max :20
     },
-    sickLeave:{
+    sickLeaveAlloted:{
         type:Number,
         require:true,
         max:10,
         min:2
     },
-    annualLeave:{
+    
+    sickLeaveTaken:{
+        type:Number,
+        require:true,
+        max:10,
+        
+    },
+    annualLeaveAlloted:{
         type:Number,
         require:true,
         min:2,
         max:10
     },
-    compensatoryLeave:{
+    annualLeaveTaken:{
+        type:Number,
+        require:true,
+        
+        max:10
+    },
+    compensatoryLeaveAlloted:{
         type:Number,
         require:true,
         max:10
     },
-    casualLeave:{
+    
+    compensatoryLeaveTaken:{
+        type:Number,
+        require:true,
+        max:10
+    },
+    casualLeaveAlloted:{
         type:Number,
         require:true,
         max:10,
-        min:2
+        
     },
-    leavesAllotedStatus:{
-        type:Boolean,
-        type:required
+    
+    casualLeaveTaken:{
+        type:Number,
+        require:true,
+        max:10,
+        
     }
 
 });
