@@ -40,7 +40,7 @@ router.post('/register',async (req,res)=>{
     try{
         
         const savedUser = await user.save();
-        res.send({"user":user._id});
+        res.send({"userId":user._id,"employeeId":user.employeeId});
     }
     catch(err){ 
         res.status(400).send(err);
@@ -62,9 +62,9 @@ router.post('/login', async (req,res)=> {
     if(!validatePassword){
         return res.status(400).send("Invalid password");
     }
-
+    const id= username._id
     //Creating a token
-    const token = jwt.sign({_id:username._id,userRole:username.userRole},process.env.TOKEN_SECRET,
+    const token = jwt.sign({_id:id,userRole:username.userRole},process.env.TOKEN_SECRET,
         {
             expiresIn:process.env.TOKEN_EXPIRE
         });
